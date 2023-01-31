@@ -42,17 +42,29 @@ class postController extends Controller
             'content' =>'noi dung'
             ]
         );
+        $input = $request->all();
         if($request->hasFile('file')){
-            // echo "cos file";
-            $file= $request->file();
-            //lấy tên file
-            echo $file->getClientOriginalName();
-            echo $file->getClientOriginalExtension();
-            echo $file->getSize();
-            // $file->move('public/uploads', $file->getClientOriginalName());
+            echo "cos file";
+            // $file= $request->file;
+            // //lấy tên file
+            // $filename = $file->getClientOriginalName();
+            // echo "<br>";
+            // echo $file->getClientOriginalExtension();
+            // echo "<br>";
+            // echo $file->getSize();
+            // echo "<br>";
+
+            // $path = $file->move('public/uploads', $file->getClientOriginalName());
+            
+            // $thumbnail = 'public/uploads'.$filename;
+            // $input['thumbnail'] = $thumbnail; 
 
         }
+        // $input['user_id'] = 1;
+        // post::created($input);
         // return $request->input();
+        // return redirect('post/show')->with('status', 'them bai viet thanh cong !');
+        // return redirect()->route('post.show');
     }
     function update($id){
         post::where('id',$id)
@@ -89,15 +101,17 @@ class postController extends Controller
     // $number_post = DB::table('post')->join('users', 'users.id','=','post.user_id')
     // ->select('users.name', 'post.title')->get();
     // echo $number_post;
-    $post = DB::table('post')
-    // ->where([
-    //     ['title', 'like' , '%1%'],
-    //     ['votes', '<>', '100']
-    // ])->get();
-    // ->selectRaw("COUNT('id') as number_post, user_id")
-    // ->groupBy('user_id')->get();
-    ->orderBy('votes','desc')->get();  
-    echo $post;
+    // $post = DB::table('post')
+    // // ->where([
+    // //     ['title', 'like' , '%1%'],
+    // //     ['votes', '<>', '100']
+    // // ])->get();
+    // // ->selectRaw("COUNT('id') as number_post, user_id")
+    // // ->groupBy('user_id')->get();
+    // ->orderBy('votes','desc')->get();  
+    // echo $post;
+    $post = post::all();
+    return view('post.index');
 
     }
     function read(){

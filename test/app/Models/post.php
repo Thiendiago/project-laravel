@@ -14,7 +14,7 @@ class post extends Model
     // protected $table = 'featuredimage';
     
     
-    protected $fillable = ['title', 'content', 'user_id'];
+    protected $fillable = ['title', 'content', 'user_id', 'thumbnail'];
     function FeaturedImages(){
         return $this->hasOne('App\Models\FeaturedImages');
     }

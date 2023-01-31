@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Model\post;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Http\Controllers\ImageController;
+   
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -82,7 +83,6 @@ Route::get('admin/product/delete/{id}', 'AdminProductController@delete');
         );
     });
     // Route::get('post/add', 'postController@add') ;
-    Route::get('post/show', 'postController@show') ;
     Route::get('post/update', 'postController@update') ;
     Route::get('post/delete/{id}', 'postController@delete') ;
     Route::get('post/restore/{id}', 'postController@restore') ;
@@ -96,6 +96,7 @@ Route::get('admin/product/delete/{id}', 'AdminProductController@delete');
 //form
     Route::get('post/add', 'postController@add') ;
     Route::post('post/store', 'postController@store') ;
+    Route::get('post/show', 'postController@show')->name('post.show') ;
 
 
 
@@ -104,4 +105,14 @@ Route::get('admin/product/delete/{id}', 'AdminProductController@delete');
     }) ;
 
     
-    
+    Route::get('image-upload', [ ImageController::class, 'index' ]);
+    Route::post('image-upload', [ ImageController::class, 'store' ])->name('image.store');
+
+    Route::get('helper/url', 'HelperController@url') ;
+    Route::get('helper/string', 'HelperController@string') ;
+    Route::get('session/add', 'SessionController@add') ;
+    Route::get('session/show', 'SessionController@show') ;
+    Route::get('session/add_flash', 'SessionController@add_flash') ;
+    Route::get('session/delete', 'SessionController@delete') ;
+    Route::get('cookie/set', 'CookieController@set') ;
+    Route::get('cookie/get', 'CookieController@get') ;
